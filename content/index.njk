@@ -37,7 +37,7 @@ const eleventyNavigation = {
 	<ul class="writing-list">
 		{%- for post in collections.posts | reverse %}
 		<li class="writing-item">
-			<time class="writing-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate("LLLL yyyy") }}</time>
+			<time class="writing-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate("LLL yyyy") }}</time>
 			<a href="{{ post.url }}" class="writing-title">{{ post.data.title }}</a>
 		</li>
 		{%- endfor %}
