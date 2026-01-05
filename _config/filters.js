@@ -40,4 +40,20 @@ export default function(eleventyConfig) {
 	eleventyConfig.addFilter("sortAlphabetically", strings =>
 		(strings || []).sort((b, a) => b.localeCompare(a))
 	);
+
+	// Word count filter
+	eleventyConfig.addFilter("wordcount", (content) => {
+		if (!content) return 0;
+		// Remove HTML tags and count words
+		const text = content.replace(/<[^>]*>/g, '');
+		const words = text.trim().split(/\s+/);
+		return words.length;
+	});
+
+	// Read time filter (assumes ~200 words per minute)
+	eleventyConfig.addFilter("readtime", (wordCount) => {
+		const wordsPerMinute = 200;
+		const readTime = Math.ceil(wordCount / wordsPerMinute);
+		return readTime;
+	});
 };

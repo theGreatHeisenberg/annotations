@@ -3,11 +3,23 @@ import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import markdownIt from "markdown-it";
+import markdownItFootnote from "markdown-it-footnote";
 
 import pluginFilters from "./_config/filters.js";
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
+	// Configure markdown-it with footnote support
+	const mdLib = markdownIt({
+		html: true,
+		breaks: false,
+		linkify: true,
+		typographer: true
+	}).use(markdownItFootnote);
+
+	eleventyConfig.setLibrary("md", mdLib);
+
 	// Drafts, see also _data/eleventyDataSchema.js
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
 		if (data.draft) {
@@ -76,11 +88,11 @@ export default async function(eleventyConfig) {
 		},
 		metadata: {
 			language: "en",
-			title: "Blog Title",
-			subtitle: "This is a longer description about your blog.",
+			title: "Annotations",
+			subtitle: "Ramblings about life",
 			base: "https://example.com/",
 			author: {
-				name: "Your Name"
+				name: "Shreyas Panhalkar"
 			}
 		}
 	});
