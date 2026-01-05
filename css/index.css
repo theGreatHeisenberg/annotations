@@ -598,12 +598,12 @@ td, th {
 }
 
 .writing-title {
-	color: var(--text);
+	color: var(--link);
 	text-decoration: none;
 }
 
 .writing-title:hover {
-	color: var(--link);
+	color: var(--text);
 	text-decoration: underline;
 }
 
@@ -679,9 +679,6 @@ td, th {
 /* Footnotes section at bottom */
 .post-content .footnotes,
 .post-content .footnotes-list {
-	margin-top: 3em;
-	padding-top: 2em;
-	border-top: 1px solid var(--border);
 	font-size: 0.875em;
 	color: var(--text-muted);
 }
